@@ -1,3 +1,11 @@
 body {
-    padding-top: 70px;
+    padding-top: 65px;
+}
+
+input {
+    padding-left: 5px;
+}
+
+.red {
+    color: indianred;
 }

@@ -1,0 +1,48 @@
+<div class="modal-header">
+    <h3 class="modal-title">Form field details</h3>
+</div>
+<div class="modal-body">
+    <form role="form" name="editFieldForm">
+        <fieldset>
+            <div class="input-group col-md-12">
+                <label for="id">Id</label>
+                <input ng-model="fieldList.fieldId" type="text" id="id" class="form-control">
+            </div><br>
+            <div class="input-group col-md-12">
+                <label for="label">Label</label>
+                <input ng-model="fieldList.fieldLabel" type="text" id="label" class="form-control">
+            </div><br>
+            <div class="input-group col-md-12">
+                <label for="type">Type</label>
+                <select ng-model="fieldList.fieldType" id="type" class="form-control">
+                    <option>text</option>
+                    <option>number</option>
+                    <option>email</option>
+                    <option>password</option>
+                    <option>selection</option>
+                </select>
+            </div><br>
+            <div ng-show="fieldList.fieldType=='selection'" class="input-group col-md-12">
+                <p><strong>Selection Options</strong> <button ng-click="fieldList.fieldOptions.push({optionValue: ''})">Add</button></p>
+                <div ng-repeat="option in fieldList.fieldOptions" class="col-md-4">
+                    <div class="input-group input-group-sm">
+                        <input ng-model="option.optionValue" class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="fieldList.fieldOptions.splice($index, 1)">
+                                <span class="glyphicon glyphicon-remove red"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div><br>
+            <div class="input-group col-md-12">
+                <label for="placeholder">Placeholder</label>
+                <input ng-model="fieldList.fieldPlaceholder" type="text" id="placeholder" class="form-control">
+            </div>
+        </fieldset>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>

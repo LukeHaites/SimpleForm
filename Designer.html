@@ -51,21 +51,31 @@
     </div>
 
     <div class="container theme-showcase" role="main">
-        <h1>{{formLayout.title}}</h1>
+        <h1>
+            <label for="layoutType">Form Layout Name</label>
+            <input ng-model="formLayout.formType" id="layoutType">
+        </h1>
 
-        <h2>{{formLayout.creator}}</h2>
+        <h3>
+            <label for="layoutTitle">Form Title</label>
+            <input ng-model="formLayout.title" id="layoutTitle">
+        </h3>
 
         <div ng-repeat="block in formLayout.formBlocks | orderBy:'blockSort'">
             <hr>
-            <p>Block Name: <input ng-model="block.blockName"></p>
-            <table class="table">
+            <p>
+                <label for="blockName">Block Name</label>
+                <input ng-model="block.blockName" id="blockName">
+            </p>
+            <table class="table table-condensed">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Label</th>
-                        <th>Type</th>
-                        <th>Placeholder Text</th>
-                        <th></th>
+                        <th style="width: 10%">Id</th>
+                        <th style="width: 15%">Label</th>
+                        <th style="width: 10%">Type</th>
+                        <th style="width: 55%">Placeholder Text</th>
+                        <th style="width: 5%"></th>
+                        <th style="width: 5%"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -74,57 +84,65 @@
                         <td>{{formField.fieldLabel}}</td>
                         <td>{{formField.fieldType}}</td>
                         <td>{{formField.fieldPlaceholder}}</td>
-                        <td><button>Edit</button></td>
+                        <td><button ng-click="editField(formField)">Edit</button></td>
+                        <td><button ng-click="block.blockFields.splice($index, 1)">Delete</button></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><button>New</button></td>
+                        <td><button ng-click="newField(block.blockFields)">New</button></td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
             <div ng-show="selected">Selection from a modal: {{ selected }}</div>
         </div>
 
-        <button ng-click="formLayout.formBlocks.push({})">add block</button>
+        <button ng-click="formLayout.formBlocks.push({blockFields: []})">add block</button>
 
-        <form role="form" name="newForm">
-            <fieldset>
-                <div ng-repeat="block in formLayout.formBlocks | orderBy:'blockSort'" class="row">
-                    <hr>
-                    <h4>{{block.blockName}} - {{block.blockSort}}</h4>
-                    <div ng-repeat="formField in block.blockFields" class="form-group col-md-4">
-                        <label for="{{formField.fieldId}}">{{formField.fieldLabel}}</label>
-                        <span ng-hide="'{{formField.fieldType}}'=='selection'">
-                            <input ng-model="formData[formField.fieldId]" id="{{formField.fieldId}}" type="{{formField.fieldType}}" placeholder="{{formField.fieldPlaceholder}}" class="form-control"/>
-                        </span>
-                        <span ng-show="'{{formField.fieldType}}'=='selection'">
-                            <select ng-model="formData[formField.fieldId]" id="{{formField.fieldId}}" class="form-control" ng-options="option.optionValue for option in formField.fieldOptions">
-                                <!--<option ng-repeat="option in formField.fieldOptions">{{option.optionValue}}</option>-->
-                            </select>
-                        </span>
+        <hr>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h3 class="panel-title">Form Preview</h3></div>
+                <div class="panel-body">
+                    <h3>{{formLayout.title}}</h3>
+                    <form role="form" name="newForm" style="padding-left: 20px; padding-right: 20px">
+                        <fieldset>
+                            <div ng-repeat="block in formLayout.formBlocks | orderBy:'blockSort'" class="row">
+                                <hr>
+                                <h4>{{block.blockName}}</h4>
+                                <div ng-repeat="formField in block.blockFields" class="form-group col-md-4">
+                                    <label for="{{formField.fieldId}}">{{formField.fieldLabel}}</label>
+                                    <span ng-hide="formField.fieldType=='selection'">
+                                        <input ng-model="formData[formField.fieldId]" id="{{formField.fieldId}}" type="{{formField.fieldType}}" placeholder="{{formField.fieldPlaceholder}}" class="form-control"/>
+                                    </span>
+                                    <span ng-show="formField.fieldType=='selection'">
+                                        <select ng-model="formData[formField.fieldId]" id="{{formField.fieldId}}" class="form-control" ng-options="option.optionValue for option in formField.fieldOptions">
+                                            <!--<option ng-repeat="option in formField.fieldOptions">{{option.optionValue}}</option>-->
+                                        </select>
+                                    </span>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+
+                    <div>
+                        <!--{{formLayout | json}}-->
+                        {{formData | json}}
                     </div>
                 </div>
-            </fieldset>
-        </form>
-
-
-
-        <div>
-            <!--{{formLayout | json}}-->
-            {{formData | json}}
         </div>
+
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="lib/ui-bootstrap-tpls-0.11.0.min.js"></script>
     <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/ui-bootstrap-tpls-0.11.0.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers/browsecontroller.js"></script>
-
 </body>
 </html>
