@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="catalogApp">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dynamic Forms</title>
+
+    <link href="css/app.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body ng-controller="browseCtrl">
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Bootstrap theme</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Nav header</li>
+                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+
+    <div class="container theme-showcase" role="main">
+        <h1>{{formLayout.title}}</h1>
+
+        <h2>{{formLayout.creator}}</h2>
+
+        <div ng-repeat="block in formLayout.formBlocks | orderBy:'blockSort'">
+            <hr>
+            <p>Block Name: <input ng-model="block.blockName"></p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Label</th>
+                        <th>Type</th>
+                        <th>Placeholder Text</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="formField in block.blockFields">
+                        <td>{{formField.fieldId}}</td>
+                        <td>{{formField.fieldLabel}}</td>
+                        <td>{{formField.fieldType}}</td>
+                        <td>{{formField.fieldPlaceholder}}</td>
+                        <td><button>Edit</button></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><button>New</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div ng-show="selected">Selection from a modal: {{ selected }}</div>
+        </div>
+
+        <button ng-click="formLayout.formBlocks.push({})">add block</button>
+
+        <form role="form" name="newForm">
+            <fieldset>
+                <div ng-repeat="block in formLayout.formBlocks | orderBy:'blockSort'" class="row">
+                    <hr>
+                    <h4>{{block.blockName}} - {{block.blockSort}}</h4>
+                    <div ng-repeat="formField in block.blockFields" class="form-group col-md-4">
+                        <label for="{{formField.fieldId}}">{{formField.fieldLabel}}</label>
+                        <span ng-hide="'{{formField.fieldType}}'=='selection'">
+                            <input ng-model="formData[formField.fieldId]" id="{{formField.fieldId}}" type="{{formField.fieldType}}" placeholder="{{formField.fieldPlaceholder}}" class="form-control"/>
+                        </span>
+                        <span ng-show="'{{formField.fieldType}}'=='selection'">
+                            <select ng-model="formData[formField.fieldId]" id="{{formField.fieldId}}" class="form-control" ng-options="option.optionValue for option in formField.fieldOptions">
+                                <!--<option ng-repeat="option in formField.fieldOptions">{{option.optionValue}}</option>-->
+                            </select>
+                        </span>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+
+
+        <div>
+            <!--{{formLayout | json}}-->
+            {{formData | json}}
+        </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="lib/ui-bootstrap-tpls-0.11.0.min.js"></script>
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers/browsecontroller.js"></script>
+
+</body>
+</html>
