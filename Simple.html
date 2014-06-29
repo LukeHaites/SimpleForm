@@ -30,20 +30,9 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Home</a></li>
+                    <li><a href="Designer.html">Design Form</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li class="dropdown-header">Nav header</li>
-                            <li><a href="#">Separated link</a></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
-                    </li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -52,13 +41,11 @@
     <div class="container theme-showcase" role="main">
         <h1>{{formLayout.title}}</h1>
 
-        <h2>{{formLayout.creator}}</h2>
-
         <form role="form" name="newForm">
             <fieldset>
                 <div ng-repeat="block in formLayout.formBlocks | orderBy:'blockSort'" class="row">
                     <hr>
-                    <h4>{{block.blockName}} - {{block.blockSort}}</h4>
+                    <h4>{{block.blockName}}</h4>
                     <div ng-repeat="formField in block.blockFields" class="form-group col-md-4">
                         <label for="{{formField.fieldId}}">{{formField.fieldLabel}}</label>
                         <span ng-hide="'{{formField.fieldType}}'=='selection'">
@@ -73,20 +60,13 @@
                 </div>
             </fieldset>
         </form>
-
-        <button ng-click="formLayout.formBlocks.push({blockName: 'New'})">add block</button>
-
-        <div>
-            <!--{{formLayout | json}}-->
-            {{formData | json}}
-        </div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="lib/bootstrap.min.js"></script>
     <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/ui-bootstrap-tpls-0.11.0.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers/browsecontroller.js"></script>
 
