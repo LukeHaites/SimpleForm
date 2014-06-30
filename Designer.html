@@ -40,6 +40,7 @@
     </div>
 
     <div class="container theme-showcase" role="main">
+        <button class="btn btn-danger pull-right" ng-click="formLayout = {title:'', formType:'', creator:'Luke Haites', formBlocks: [{blockFields:[]}]}">Clear All</button>
         <h1>
             <label for="layoutType">Form Layout Name</label>
             <input ng-model="formLayout.formType" id="layoutType">
@@ -86,7 +87,6 @@
                     </tr>
                 </tbody>
             </table>
-            <div ng-show="selected">Selection from a modal: {{ selected }}</div>
         </div>
 
         <button ng-click="formLayout.formBlocks.push({blockFields: []})">add block</button>
@@ -118,8 +118,8 @@
                     </form>
 
                     <div>
-                        <!--{{formLayout | json}}-->
-                        {{formData | json}}
+                        <!--{{formLayout | json}}
+                        {{formData | json}}-->
                     </div>
                 </div>
         </div>

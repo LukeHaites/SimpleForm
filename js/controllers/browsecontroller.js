@@ -97,7 +97,7 @@ var ModalInstanceCtrl = function ($scope, $modalInstance, editData) {
     $scope.fieldList = editData;
 
     $scope.ok = function () {
-        $modalInstance.close($scope.selected.item);
+        $modalInstance.close();
     };
 
     $scope.cancel = function () {
