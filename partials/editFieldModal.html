@@ -6,15 +6,15 @@
         <fieldset>
             <div class="input-group col-md-12">
                 <label for="id">Id</label>
-                <input ng-model="fieldList.fieldId" type="text" id="id" class="form-control">
+                <input ng-model="fieldConfig.fieldId" type="text" id="id" class="form-control">
             </div><br>
             <div class="input-group col-md-12">
                 <label for="label">Label</label>
-                <input ng-model="fieldList.fieldLabel" type="text" id="label" class="form-control">
+                <input ng-model="fieldConfig.fieldLabel" type="text" id="label" class="form-control">
             </div><br>
             <div class="input-group col-md-12">
                 <label for="type">Type</label>
-                <select ng-model="fieldList.fieldType" id="type" class="form-control">
+                <select ng-model="fieldConfig.fieldType" id="type" class="form-control">
                     <option>text</option>
                     <option>number</option>
                     <option>email</option>
@@ -22,13 +22,13 @@
                     <option>selection</option>
                 </select>
             </div><br>
-            <div ng-show="fieldList.fieldType=='selection'" class="input-group col-md-12">
-                <p><strong>Selection Options</strong> <button ng-click="fieldList.fieldOptions.push({optionValue: ''})">Add</button></p>
-                <div ng-repeat="option in fieldList.fieldOptions" class="col-md-4">
+            <div ng-show="fieldConfig.fieldType=='selection'" class="input-group col-md-12">
+                <p><strong>Selection Options</strong> <button ng-click="fieldConfig.fieldOptions.push({optionValue: ''})">Add</button></p>
+                <div ng-repeat="option in fieldConfig.fieldOptions" class="col-md-4">
                     <div class="input-group input-group-sm">
                         <input ng-model="option.optionValue" class="form-control">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" ng-click="fieldList.fieldOptions.splice($index, 1)">
+                            <button class="btn btn-default" type="button" ng-click="fieldConfig.fieldOptions.splice($index, 1)">
                                 <span class="glyphicon glyphicon-remove red"></span>
                             </button>
                         </span>
@@ -37,7 +37,7 @@
             </div><br>
             <div class="input-group col-md-12">
                 <label for="placeholder">Placeholder</label>
-                <input ng-model="fieldList.fieldPlaceholder" type="text" id="placeholder" class="form-control">
+                <input ng-model="fieldConfig.fieldPlaceholder" type="text" id="placeholder" class="form-control">
             </div>
         </fieldset>
     </form>

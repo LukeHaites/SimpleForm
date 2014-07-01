@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="catalogApp">
+<html lang="en" ng-app="formApp">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +15,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body ng-controller="browseCtrl">
+<body ng-controller="formDesignController">
 
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -93,7 +93,7 @@
 
         <hr>
 
-        <div class="panel panel-primary">
+        <div class="panel panel-primary" ng-controller="formDisplayController">
             <div class="panel-heading"><h3 class="panel-title">Form Preview</h3></div>
                 <div class="panel-body">
                     <h3>{{formLayout.title}}</h3>
@@ -133,5 +133,6 @@
     <script src="lib/ui-bootstrap-tpls-0.11.0.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers/browsecontroller.js"></script>
+    <script src="js/services/DataService.js"></script>
 </body>
 </html>

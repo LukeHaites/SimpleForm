@@ -3,71 +3,14 @@
  */
 'use strict';
 
-angular.module ('catalogApp', ['ui.bootstrap']);
-
-var browseCtrl = function($scope,$modal,$log){
-    $scope.formLayout = {
-        title: "New Product Quote",
-        formType: "Quote",
-        creator: "Luke Haites",
-        formBlocks: [
-            {
-                blockSort: 0,
-                blockName: 'Summary',
-                blockFields: [
-                    {
-                        fieldId: 'Style',
-                        fieldLabel: 'Style No',
-                        fieldType: 'text',
-                        fieldPlaceholder: 'Style number ...',
-                        fieldOptions: []
-                    },
-                    {
-                        fieldId: 'Factory',
-                        fieldLabel: 'Factory',
-                        fieldType: 'text',
-                        fieldPlaceholder: 'Factory name ...',
-                        fieldOptions: []
-                    }
-                ]
-            },
-            {
-                blockSort: 1,
-                blockName: 'Pricing',
-                blockFields: [
-                    {
-                        fieldId: 'CostBase',
-                        fieldLabel: 'Cost Basis',
-                        fieldType: 'selection',
-                        fieldOptions: [{optionValue: 'FOB'}, {optionValue:'CMT'}]
-                    },
-                    {
-                        fieldId: 'FOB',
-                        fieldLabel: 'FOB Price',
-                        fieldType: 'text',
-                        fieldPlaceholder: '',
-                        fieldOptions: []
-                    },
-                    {
-                        fieldId: 'CMT',
-                        fieldLabel: 'CMT Price',
-                        fieldType: 'text',
-                        fieldPlaceholder: '',
-                        fieldOptions: []
-                    },
-                    {
-                        fieldId: 'Qty',
-                        fieldLabel: 'Quantity',
-                        fieldType: 'number',
-                        fieldPlaceholder: '',
-                        fieldOptions: []
-                    }
-                ]
-            }
-        ]
-    }
+app.controller('formDisplayController', function($scope, layoutData){
+    $scope.formLayout = layoutData.formTemplate;
 
     $scope.formData = {};
+});
+
+app.controller('formDesignController', function($scope, $modal, $log, layoutData){
+    $scope.formLayout = layoutData.formTemplate;
 
     $scope.newField = function(field){
         field.push({fieldId: '', fieldLabel: '', fieldType: '', fieldPlaceholder: '', fieldOptions: []})
@@ -76,9 +19,9 @@ var browseCtrl = function($scope,$modal,$log){
     $scope.editField = function(editData){
         var modalInstance = $modal.open({
             templateUrl: 'partials/editFieldModal.html',
-            controller: ModalInstanceCtrl,
+            controller: 'fieldConfigController',
             resolve: {
-                editData: function () {
+                fieldData: function () {
                     return editData;
                 }
             }
@@ -90,11 +33,15 @@ var browseCtrl = function($scope,$modal,$log){
             $log.info('Modal dismissed at: ' + new Date());
         });
     };
-};
+});
 
-var ModalInstanceCtrl = function ($scope, $modalInstance, editData) {
+app.controller('fieldConfigController', function ($scope, $modalInstance, $log, fieldData) {
 
-    $scope.fieldList = editData;
+    $scope.fieldConfig = {};
+    $log.info('fc', $scope.fieldConfig, $scope.$id);
+    $log.info('fd', fieldData.$id);
+    $scope.fieldConfig = fieldData;
+    $log.info('fc-fd', $scope.fieldConfig.$id);
 
     $scope.ok = function () {
         $modalInstance.close();
@@ -103,4 +50,4 @@ var ModalInstanceCtrl = function ($scope, $modalInstance, editData) {
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
-};
+});
