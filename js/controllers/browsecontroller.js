@@ -9,45 +9,53 @@ app.controller('formDisplayController', function($scope, layoutData){
     $scope.formData = {};
 });
 
-app.controller('formDesignController', function($scope, $modal, $log, layoutData){
+app.controller('formDesignController', function($scope, layoutData){
     $scope.formLayout = layoutData.formTemplate;
 
     $scope.newField = function(field){
         field.push({fieldId: '', fieldLabel: '', fieldType: '', fieldPlaceholder: '', fieldOptions: []})
     };
+});
 
-    $scope.editField = function(editData){
+app.controller('fieldEditController', function($scope, $modal){
+    $scope.editField = function(){
         var modalInstance = $modal.open({
             templateUrl: 'partials/editFieldModal.html',
             controller: 'fieldConfigController',
             resolve: {
                 fieldData: function () {
-                    return editData;
+                    return $scope.formField;
                 }
             }
         });
 
-        modalInstance.result.then(function (selectedItem) {
-            $scope.selected = selectedItem;
-        }, function () {
-            $log.info('Modal dismissed at: ' + new Date());
+        modalInstance.result.then(function (fieldConfig) {
+            if (fieldConfig != 'Cancel'){
+                $scope.formField.fieldId = fieldConfig.fieldId;
+                $scope.formField.fieldLabel = fieldConfig.fieldLabel;
+                $scope.formField.fieldType = fieldConfig.fieldType;
+                $scope.formField.fieldPlaceholder = fieldConfig.fieldPlaceholder;
+                $scope.formField.fieldOptions = fieldConfig.fieldOptions;
+            }
         });
     };
 });
 
-app.controller('fieldConfigController', function ($scope, $modalInstance, $log, fieldData) {
+app.controller('fieldConfigController', function ($scope, $modalInstance, fieldData) {
 
-    $scope.fieldConfig = {};
-    $log.info('fc', $scope.fieldConfig, $scope.$id);
-    $log.info('fd', fieldData.$id);
-    $scope.fieldConfig = fieldData;
-    $log.info('fc-fd', $scope.fieldConfig.$id);
+    $scope.fieldConfig = {
+        fieldId: fieldData.fieldId,
+        fieldLabel: fieldData.fieldLabel,
+        fieldType: fieldData.fieldType,
+        fieldPlaceholder: fieldData.fieldPlaceholder,
+        fieldOptions: fieldData.fieldOptions
+    };
 
     $scope.ok = function () {
-        $modalInstance.close();
+        $modalInstance.close($scope.fieldConfig);
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $modalInstance.dismiss('Cancel');
     };
 });

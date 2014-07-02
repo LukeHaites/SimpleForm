@@ -74,7 +74,7 @@
                         <td>{{formField.fieldLabel}}</td>
                         <td>{{formField.fieldType}}</td>
                         <td>{{formField.fieldPlaceholder}}</td>
-                        <td><button ng-click="editField(formField)">Edit</button></td>
+                        <td><button ng-click="editField()" ng-controller="fieldEditController">Edit</button></td>
                         <td><button ng-click="block.blockFields.splice($index, 1)">Delete</button></td>
                     </tr>
                     <tr>
