@@ -2,11 +2,12 @@
     <h3 class="modal-title">Form field details</h3>
 </div>
 <div class="modal-body">
-    <form role="form" name="editFieldForm">
+    <form role="form" name="editFieldForm" ng-model-options="{ updateOn: 'submit' }">
         <fieldset>
             <div class="input-group col-md-12">
                 <label for="id">Id</label>
-                <input ng-model="fieldConfig.fieldId" type="text" id="id" class="form-control">
+                <input ng-model="fieldConfig.fieldId"  type="text" id="id" class="form-control" />
+                <br>{{fieldConfig.fieldId}}
             </div><br>
             <div class="input-group col-md-12">
                 <label for="label">Label</label>
@@ -33,16 +34,17 @@
                             </button>
                         </span>
                     </div>
-                </div>
-            </div><br>
+                </div><br>
+            </div>
             <div class="input-group col-md-12">
                 <label for="placeholder">Placeholder</label>
                 <input ng-model="fieldConfig.fieldPlaceholder" type="text" id="placeholder" class="form-control">
             </div>
         </fieldset>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" ng-click="ok()">OK</button>
+            <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
     </form>
 </div>
-<div class="modal-footer">
-    <button class="btn btn-primary" ng-click="ok()">OK</button>
-    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-</div>
+

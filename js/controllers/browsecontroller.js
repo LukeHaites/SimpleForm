@@ -28,34 +28,18 @@ app.controller('fieldEditController', function($scope, $modal){
                 }
             }
         });
-
-        modalInstance.result.then(function (fieldConfig) {
-            if (fieldConfig != 'Cancel'){
-                $scope.formField.fieldId = fieldConfig.fieldId;
-                $scope.formField.fieldLabel = fieldConfig.fieldLabel;
-                $scope.formField.fieldType = fieldConfig.fieldType;
-                $scope.formField.fieldPlaceholder = fieldConfig.fieldPlaceholder;
-                $scope.formField.fieldOptions = fieldConfig.fieldOptions;
-            }
-        });
     };
 });
 
 app.controller('fieldConfigController', function ($scope, $modalInstance, fieldData) {
 
-    $scope.fieldConfig = {
-        fieldId: fieldData.fieldId,
-        fieldLabel: fieldData.fieldLabel,
-        fieldType: fieldData.fieldType,
-        fieldPlaceholder: fieldData.fieldPlaceholder,
-        fieldOptions: fieldData.fieldOptions
-    };
+    $scope.fieldConfig = fieldData;
 
     $scope.ok = function () {
-        $modalInstance.close($scope.fieldConfig);
+        $modalInstance.close();
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('Cancel');
+        $modalInstance.dismiss();
     };
 });

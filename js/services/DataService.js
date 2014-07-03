@@ -11,13 +11,20 @@ app.factory('layoutData', function() {
             formBlocks: [
                 {
                     blockSort: 0,
-                    blockName: 'Summary',
+                    blockName: 'Quote Header',
                     blockFields: [
                         {
-                            fieldId: 'Style',
-                            fieldLabel: 'Style No',
+                            fieldId: 'brand',
+                            fieldLabel: 'Brand',
+                            fieldType: 'selection',
+                            fieldPlaceholder: '',
+                            fieldOptions: [{optionValue: 'JAG'}, {optionValue: 'SABA'}, {optionValue: 'SPORTSCRAFT'}]
+                        },
+                        {
+                            fieldId: 'deliverymonth',
+                            fieldLabel: 'Delivery Month',
                             fieldType: 'text',
-                            fieldPlaceholder: 'Style number ...',
+                            fieldPlaceholder: '',
                             fieldOptions: []
                         },
                         {
@@ -25,6 +32,54 @@ app.factory('layoutData', function() {
                             fieldLabel: 'Factory',
                             fieldType: 'text',
                             fieldPlaceholder: 'Factory name ...',
+                            fieldOptions: []
+                        },
+                        {
+                            fieldId: 'Style',
+                            fieldLabel: 'Style No',
+                            fieldType: 'text',
+                            fieldPlaceholder: 'Style number from Tech Pack ...',
+                            fieldOptions: []
+                        },
+                        {
+                            fieldId: 'description',
+                            fieldLabel: 'Description',
+                            fieldType: 'text',
+                            fieldPlaceholder: 'Style description from Tech Pack ...',
+                            fieldOptions: []
+                        },
+                        {
+                            fieldId: 'color',
+                            fieldLabel: 'Colour',
+                            fieldType: 'text',
+                            fieldPlaceholder: '',
+                            fieldOptions: []
+                        }
+                    ]
+                },
+                {
+                    blockSort: 1,
+                    blockName: 'Fabric Details',
+                    blockFields: [
+                        {
+                            fieldId: 'fabricquality',
+                            fieldLabel: 'Fabric Quality',
+                            fieldType: 'text',
+                            fieldPlaceholder: '',
+                            fieldOptions: []
+                        },
+                        {
+                            fieldId: 'fabricmill',
+                            fieldLabel: 'Fabric Mill',
+                            fieldType: 'text',
+                            fieldPlaceholder: '',
+                            fieldOptions: []
+                        },
+                        {
+                            fieldId: 'fabriccharge',
+                            fieldLabel: 'Fabric Charge',
+                            fieldType: 'number',
+                            fieldPlaceholder: '',
                             fieldOptions: []
                         }
                     ]
