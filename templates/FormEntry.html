@@ -1,0 +1,25 @@
+<div ng-controller="formDisplayController">
+    <div class="container theme-showcase" role="main">
+        <h1>{{formLayout.title}}</h1>
+
+        <form role="form" name="newForm">
+            <fieldset>
+                <div ng-repeat="block in formLayout.formBlocks | orderBy:'blockSort'" class="row">
+                    <hr>
+                    <h4 style="border-left: 5px solid #c2c9cc; margin-left: -15px; padding-left: 5px;">{{block.blockName}}</h4>
+                    <div ng-repeat="formField in block.blockFields" class="form-group col-md-3">
+                        <label for="{{formField.fieldId}}">{{formField.fieldLabel}}</label>
+                        <span ng-hide="'{{formField.fieldType}}'=='selection'">
+                            <input ng-model="formData[formField.fieldId]" id="{{formField.fieldId}}" type="{{formField.fieldType}}" placeholder="{{formField.fieldPlaceholder}}" class="form-control"/>
+                        </span>
+                        <span ng-show="'{{formField.fieldType}}'=='selection'">
+                            <select  style="-webkit-appearance:menulist" ng-model="formData[formField.fieldId]" id="{{formField.fieldId}}" class="form-control" ng-options="option.optionValue for option in formField.fieldOptions">
+                                <!--<option ng-repeat="option in formField.fieldOptions">{{option.optionValue}}</option>-->
+                            </select>
+                        </span>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

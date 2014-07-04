@@ -1,0 +1,25 @@
+<div ui-view="navigation" autoscroll="false">
+    <div class="ng-scope">
+        <div class="tabbable ng-isolate-scope">
+            <ul class="nav nav-tabs"
+                ng-class="{&#39;nav-stacked&#39;: vertical, &#39;nav-justified&#39;: justified}"
+                ng-transclude="">
+                <li heading="Management" active="tab.active" class="">
+                    <a>Management</a>
+                </li>
+                <li heading="Documents" active="tab.active" class="">
+                    <a>Documents</a>
+                </li>
+                <li heading="Suppliers" active="tab.active" class="">
+                    <a>Suppliers</a>
+                </li>
+                <li heading="Product List" active="tab.active" class="">
+                    <a>Product List</a>
+                </li>
+                <li heading="Product List" active="tab.active" class="active">
+                    <a>Quotes</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

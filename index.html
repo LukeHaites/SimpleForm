@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style type="text/css">
+        @charset "UTF-8";
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide {display: none !important;}
+        ng\:form {display: block;}
+        .ng-animate-block-transitions {transition: 0s all !important; -webkit-transition: 0s all !important;}
+    </style>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Supplier Junction</title>
+    <link href="https://www.supplierjunction.com/favicon.ico" rel="shortcut icon">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://www.supplierjunction.com/dest/supplierportal.min.css" rel="stylesheet">
+</head>
+<body ng-app="formApp">
+
+<div class="container-fluid">
+    <div ng-include="'templates/Header.html'"></div>
+    <div ng-include="'templates/Navigation.html'"></div>
+
+    <div ng-include="'templates/FormEntry.html'"></div>
+
+</div>
+
+<footer autoscroll="false" ui-view="footer">
+    <div class="powered-by ng-scope">
+        <img src="media/supplier_junction.png" alt="Supplier Junction">
+    </div>
+</footer>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="lib/angular/angular.min.js"></script>
+<script src="lib/ui-bootstrap-tpls-0.11.0.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/controllers/browsecontroller.js"></script>
+<script src="js/services/DataService.js"></script>
+
+</body>
+</html>

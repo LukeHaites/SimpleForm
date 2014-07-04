@@ -20,7 +20,7 @@ app.controller('formDesignController', function($scope, layoutData){
 app.controller('fieldEditController', function($scope, $modal){
     $scope.editField = function(){
         var modalInstance = $modal.open({
-            templateUrl: 'partials/editFieldModal.html',
+            templateUrl: 'templates/editFieldModal.html',
             controller: 'fieldConfigController',
             resolve: {
                 fieldData: function () {

@@ -31,26 +31,33 @@ app.factory('layoutData', function() {
                             fieldId: 'Factory',
                             fieldLabel: 'Factory',
                             fieldType: 'text',
-                            fieldPlaceholder: 'Factory name ...',
+                            fieldPlaceholder: '',
                             fieldOptions: []
                         },
                         {
                             fieldId: 'Style',
                             fieldLabel: 'Style No',
                             fieldType: 'text',
-                            fieldPlaceholder: 'Style number from Tech Pack ...',
+                            fieldPlaceholder: 'from Tech Pack ...',
                             fieldOptions: []
                         },
                         {
                             fieldId: 'description',
                             fieldLabel: 'Description',
                             fieldType: 'text',
-                            fieldPlaceholder: 'Style description from Tech Pack ...',
+                            fieldPlaceholder: 'from Tech Pack ...',
                             fieldOptions: []
                         },
                         {
                             fieldId: 'color',
                             fieldLabel: 'Colour',
+                            fieldType: 'text',
+                            fieldPlaceholder: '',
+                            fieldOptions: []
+                        },
+                        {
+                            fieldId: 'remarks',
+                            fieldLabel: 'Remarks',
                             fieldType: 'text',
                             fieldPlaceholder: '',
                             fieldOptions: []
@@ -85,7 +92,41 @@ app.factory('layoutData', function() {
                     ]
                 },
                 {
-                    blockSort: 1,
+                    blockSort: 2,
+                    blockName: 'Key Dates',
+                    blockFields: [
+                        {
+                            fieldId: 'fisreceiveddate',
+                            fieldLabel: 'FIS Receive Date',
+                            fieldType: 'text',
+                            fieldPlaceholder: '',
+                            fieldOptions: []
+                        },
+                        {
+                            fieldId: 'techpackreceiveddate',
+                            fieldLabel: 'Tech Pack Receive Date',
+                            fieldType: 'text',
+                            fieldPlaceholder: '',
+                            fieldOptions: []
+                        },
+                        {
+                            fieldId: 'samplerollduedate',
+                            fieldLabel: 'Sample Roll Due Date',
+                            fieldType: 'text',
+                            fieldPlaceholder: '',
+                            fieldOptions: []
+                        },
+                        {
+                            fieldId: 'dvsampleduedate',
+                            fieldLabel: 'DV Sample Due Date',
+                            fieldType: 'text',
+                            fieldPlaceholder: '',
+                            fieldOptions: []
+                        }
+                    ]
+                },
+                {
+                    blockSort: 3,
                     blockName: 'Pricing',
                     blockFields: [
                         {
@@ -97,20 +138,20 @@ app.factory('layoutData', function() {
                         {
                             fieldId: 'FOB',
                             fieldLabel: 'FOB Price',
-                            fieldType: 'text',
-                            fieldPlaceholder: '',
+                            fieldType: 'number',
+                            fieldPlaceholder: 'US$ ...',
                             fieldOptions: []
                         },
                         {
                             fieldId: 'CMT',
                             fieldLabel: 'CMT Price',
-                            fieldType: 'text',
-                            fieldPlaceholder: '',
+                            fieldType: 'number',
+                            fieldPlaceholder: 'US$ ...',
                             fieldOptions: []
                         },
                         {
-                            fieldId: 'Qty',
-                            fieldLabel: 'Quantity',
+                            fieldId: 'targetprice',
+                            fieldLabel: 'Target Price',
                             fieldType: 'number',
                             fieldPlaceholder: '',
                             fieldOptions: []
